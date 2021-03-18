@@ -1,5 +1,7 @@
 package com.nordnetab.chcp.main.events;
 
+import android.util.Log;
+
 import java.util.List;
 import java.util.ArrayList;
 
