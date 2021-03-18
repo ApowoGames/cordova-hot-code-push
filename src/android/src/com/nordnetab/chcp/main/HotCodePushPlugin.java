@@ -508,6 +508,7 @@ public class HotCodePushPlugin extends CordovaPlugin {
      * @param callback callback where to send the result
      */
     private void jsGetFileDownloadInfo(final CallbackContext callback) {
+        final Map<String, Object> data = new HashMap<String, Object>();
         data.put("manifestDiffTotal", manifestDiffTotal);
         data.put("fileDownloadTotal", fileDownloadTotal);
 
@@ -999,7 +1000,7 @@ public class HotCodePushPlugin extends CordovaPlugin {
         Log.d("CHCP", "CHCP Single File Download Complete: " + event.data().get("fileName"));
         fileDownloadTotal += 1;
         Log.d("KF", "KF fileDownloadTotal: " + fileDownloadTotal);
-        
+
         PluginResult jsResult = PluginResultHelper.pluginResultFromEvent(event);
 
         sendMessageToDefaultCallback(jsResult);
