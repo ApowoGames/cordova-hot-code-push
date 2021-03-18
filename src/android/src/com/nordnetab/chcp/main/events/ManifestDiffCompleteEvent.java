@@ -29,6 +29,9 @@ public class ManifestDiffCompleteEvent extends PluginEventImpl {
             }
         }
 
+        Log.d("KF", "ManifestDiffCompleteEvent size:" + fileNames.size());
+
         super.data().put("updateFiles", fileNames);
+        super.data().put("updateFilesSize", fileNames.size());
     }
 }

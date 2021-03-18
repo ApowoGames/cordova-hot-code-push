@@ -14,7 +14,8 @@ var exec = require('cordova/exec'),
     CONFIGURE: 'jsConfigure',
     REQUEST_APP_UPDATE: 'jsRequestAppUpdate',
     IS_UPDATE_AVAILABLE_FOR_INSTALLATION: 'jsIsUpdateAvailableForInstallation',
-    GET_INFO: 'jsGetVersionInfo'
+    GET_INFO: 'jsGetVersionInfo',
+    GET_FILE_DOWNLOAD_INFO: 'jsGetFileDownloadInfo'
   };
 
 // Called when Cordova is ready for work.
@@ -281,6 +282,13 @@ var chcp = {
    */
   getVersionInfo: function(callback) {
     callNativeMethod(pluginNativeMethod.GET_INFO, null, callback);
+  },
+
+  /**
+   * 文件下载信息
+   */
+   getFileDownloadInfo: function(callback) {
+    callNativeMethod(pluginNativeMethod.GET_FILE_DOWNLOAD_INFO, null, callback);
   }
 };
 

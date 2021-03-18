@@ -69,6 +69,8 @@ public class HotCodePushPlugin extends CordovaPlugin {
     private static final String FILE_PREFIX = "file://";
     private static final String WWW_FOLDER = "www";
     private static final String LOCAL_ASSETS_FOLDER = "file:///android_asset/www";
+    private int fileDownloadTotal = 0;
+    private int manifestDiffTotal = 0;
 
     private String startingPage;
     private IObjectFileStorage<ApplicationConfig> appConfigStorage;
@@ -287,6 +289,8 @@ public class HotCodePushPlugin extends CordovaPlugin {
             jsIsUpdateAvailableForInstallation(callbackContext);
         } else if (JSAction.GET_VERSION_INFO.equals(action)) {
             jsGetVersionInfo(callbackContext);
+        } else if (JSAction.GET_FILE_DOWNLOAD_INFO.equals(action)) {
+            jsGetFileDownloadInfo(callbackContext);
         } else {
             cmdProcessed = false;
         }
@@ -493,6 +497,19 @@ public class HotCodePushPlugin extends CordovaPlugin {
         data.put("previousWebVersion", pluginInternalPrefs.getPreviousReleaseVersionName());
         data.put("appVersion", VersionHelper.applicationVersionName(context));
         data.put("buildVersion", VersionHelper.applicationVersionCode(context));
+
+        final PluginResult pluginResult = PluginResultHelper.createPluginResult(null, data, null);
+        callback.sendPluginResult(pluginResult);
+    }
+
+     /**
+     * 热更新下载文件信息
+     *
+     * @param callback callback where to send the result
+     */
+    private void jsGetFileDownloadInfo(final CallbackContext callback) {
+        data.put("manifestDiffTotal", manifestDiffTotal);
+        data.put("fileDownloadTotal", fileDownloadTotal);
 
         final PluginResult pluginResult = PluginResultHelper.createPluginResult(null, data, null);
         callback.sendPluginResult(pluginResult);
@@ -961,6 +978,8 @@ public class HotCodePushPlugin extends CordovaPlugin {
     @Subscribe
     public void onEvent(ManifestDiffCompleteEvent event) {
         Log.d("CHCP", "CHCP Content Manifest Diff Complete: " + event.data().get("updateFiles"));
+        Log.d("KF", "ManifestDiffComplete size: " + event.data().get("updateFilesSize"));
+        manifestDiffTotal = (Integer) event.data().get("updateFilesSize");
 
         PluginResult jsResult = PluginResultHelper.pluginResultFromEvent(event);
 
@@ -978,7 +997,9 @@ public class HotCodePushPlugin extends CordovaPlugin {
     @Subscribe
     public void onEvent(UpdateDownloadProgressEvent event) {
         Log.d("CHCP", "CHCP Single File Download Complete: " + event.data().get("fileName"));
-
+        fileDownloadTotal += 1;
+        Log.d("KF", "KF fileDownloadTotal: " + fileDownloadTotal);
+        
         PluginResult jsResult = PluginResultHelper.pluginResultFromEvent(event);
 
         sendMessageToDefaultCallback(jsResult);
