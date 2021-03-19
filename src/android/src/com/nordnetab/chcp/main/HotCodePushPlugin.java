@@ -532,6 +532,9 @@ public class HotCodePushPlugin extends CordovaPlugin {
             return;
         }
 
+        // 热更新下载文件计数器，重置
+        fileDownloadTotal = 0;
+
         Map<String, String> requestHeaders = null;
         String configURL = chcpXmlConfig.getConfigUrl();
         if (fetchOptions == null) {

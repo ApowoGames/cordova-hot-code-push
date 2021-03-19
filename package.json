@@ -1,6 +1,6 @@
 {
   "name": "cordova-hot-code-push-plugin-renew",
-  "version": "1.5.13",
+  "version": "1.5.14",
   "description": "Cordova plugin to perform code updates on the fly",
   "cordova": {
     "id": "cordova-hot-code-push-plugin-renew",
