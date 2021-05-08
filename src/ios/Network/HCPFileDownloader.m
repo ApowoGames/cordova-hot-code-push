@@ -78,7 +78,7 @@ static NSUInteger const TIMEOUT = 300;
         _complitionHandler(error);
         return;
     } else {
-        [self notifyUpdateDownloadProgress:nil fileName:((HCPManifestFile *)_filesList[_downloadCounter]).name];
+        [self notifyUpdateDownloadProgress:nil fileName:((HCPManifestFile *)_filesList[_downloadCounter]).name downloadCount:[NSNumber numberWithInteger:_downloadCounter] filesCount:[NSNumber numberWithInteger:_filesList.count]];
     }
     
     _downloadCounter++;
@@ -167,12 +167,14 @@ static NSUInteger const TIMEOUT = 300;
  *
  *  @param config application config that was used for download
  */
-- (void)notifyUpdateDownloadProgress:(HCPApplicationConfig *)config fileName:(NSString *)fileName {
+- (void)notifyUpdateDownloadProgress:(HCPApplicationConfig *)config fileName:(NSString *)fileName downloadCount:(NSNumber *)downloadCount filesCount:(NSNumber *)filesCount {
 
     NSLog(@"File Download Success: %@", fileName);
 
     NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
     data[@"fileName"] = fileName;
+    data[@"downloadCount"] = downloadCount;
+    data[@"filesCount"] = filesCount;
     
     NSNotification *notification = [HCPEvents notificationWithName:kHCPUpdateDownloadProgressEvent
                                                  applicationConfig:config
