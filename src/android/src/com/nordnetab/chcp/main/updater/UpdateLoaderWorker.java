@@ -188,7 +188,10 @@ class UpdateLoaderWorker implements WorkerTask {
      */
     private ContentManifest downloadContentManifest(final String contentUrl) {
         final String url = URLUtility.construct(contentUrl, PluginFilesStructure.MANIFEST_FILE_NAME);
-        final ContentManifestDownloader downloader = new ContentManifestDownloader(url, requestHeaders);
+        Long tempstamp = System.currentTimeMillis();
+        String joint = "?" + String.valueOf(tempstamp);
+        String urlTempstamp = url + joint;
+        final ContentManifestDownloader downloader = new ContentManifestDownloader(urlTempstamp, requestHeaders);
         final DownloadResult<ContentManifest> downloadResult = downloader.download();
         if (downloadResult.error != null) {
             Log.d("CHCP", "Failed to download content manifest");
