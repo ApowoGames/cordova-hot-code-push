@@ -13,6 +13,7 @@ var exec = require('cordova/exec'),
     INSTALL_UPDATE: 'jsInstallUpdate',
     CONFIGURE: 'jsConfigure',
     REQUEST_APP_UPDATE: 'jsRequestAppUpdate',
+    IS_PLUGIN_READY: "jsIsPluginReady",
     IS_UPDATE_AVAILABLE_FOR_INSTALLATION: 'jsIsUpdateAvailableForInstallation',
     GET_INFO: 'jsGetVersionInfo',
     GET_FILE_DOWNLOAD_INFO: 'jsGetFileDownloadInfo'
@@ -270,6 +271,9 @@ var chcp = {
    *
    * @param {Callback(error, data)} callback - called, when information is retrieved from the native side.
    */
+  isPluginReady: function(callback) {
+    callNativeMethod(pluginNativeMethod.IS_PLUGIN_READY, null, callback);
+  },
   isUpdateAvailableForInstallation: function(callback) {
     callNativeMethod(pluginNativeMethod.IS_UPDATE_AVAILABLE_FOR_INSTALLATION, null, callback);
   },

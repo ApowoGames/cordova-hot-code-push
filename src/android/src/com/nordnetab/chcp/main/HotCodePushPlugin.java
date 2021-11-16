@@ -285,7 +285,9 @@ public class HotCodePushPlugin extends CordovaPlugin {
             jsSetPluginOptions(args, callbackContext);
         } else if (JSAction.REQUEST_APP_UPDATE.equals(action)) {
             jsRequestAppUpdate(args, callbackContext);
-        } else if (JSAction.IS_UPDATE_AVAILABLE_FOR_INSTALLATION.equals(action)) {
+        } else if (JSAction.IS_PLUGIN_READY.equals(action)) {
+            jsIsPluginReady(callbackContext);
+        }   else if (JSAction.IS_UPDATE_AVAILABLE_FOR_INSTALLATION.equals(action)) {
             jsIsUpdateAvailableForInstallation(callbackContext);
         } else if (JSAction.GET_VERSION_INFO.equals(action)) {
             jsGetVersionInfo(callbackContext);
@@ -463,6 +465,13 @@ public class HotCodePushPlugin extends CordovaPlugin {
         new AppUpdateRequestDialog(cordova.getActivity(), msg, storeURL, callback).show();
     }
 
+    private void jsIsPluginReady(final CallbackContext callback) {
+        Map<String, Object> data = null;
+        data.put("isPluginReady", isPluginReadyForWork);
+       
+        PluginResult pluginResult = PluginResultHelper.createPluginResult(null, data, error);
+        callback.sendPluginResult(pluginResult);
+    }
     /**
      * Check if new version was loaded and can be installed.
      *
@@ -738,11 +747,22 @@ public class HotCodePushPlugin extends CordovaPlugin {
         PluginResult result = PluginResultHelper.pluginResultFromEvent(event);
         sendMessageToDefaultCallback(result);
 
+        EventBus.getDefault().post(new IsPluginReadyEvent());
+
         if (chcpXmlConfig.isAutoDownloadIsAllowed() &&
                 !UpdatesInstaller.isInstalling() && !UpdatesLoader.isExecuting()) {
             fetchUpdate();
         }
     }
+
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onEvent(final IsPluginReadyEvent event) {
+
+        PluginResult result = PluginResultHelper.pluginResultFromEvent(event);
+        sendMessageToDefaultCallback(result);
+    }
+
 
     /**
      * Listener for event that we failed to install assets folder on the external storage.
