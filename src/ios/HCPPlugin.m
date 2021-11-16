@@ -402,6 +402,10 @@ static NSString *const DEFAULT_STARTING_PAGE = @"index.html";
                                name:kHCPBundleAssetsInstalledOnExternalStorageEvent
                              object:nil];
     [notificationCenter addObserver:self
+                           selector:@selector(onIsPluginReadyEvent:)
+                               name:kHCPBundleIsPluginReadyEvent
+                             object:nil];
+    [notificationCenter addObserver:self
                            selector:@selector(onAssetsInstallationErrorEvent:)
                                name:kHCPBundleAssetsInstallationErrorEvent
                              object:nil];
@@ -490,6 +494,10 @@ static NSString *const DEFAULT_STARTING_PAGE = @"index.html";
     // send notification to web
     [self invokeDefaultCallbackWithMessage:[CDVPluginResult pluginResultForNotification:notification]];
 
+     NSNotification *notification = [HCPEvents notificationWithName:kHCPBundleIsPluginReadyEvent
+                                                 isPluginReady:true];
+    [[NSNotificationCenter defaultCenter] postNotification:notification];
+
     // fetch update
     [self loadApplicationConfig];
 
@@ -498,6 +506,11 @@ static NSString *const DEFAULT_STARTING_PAGE = @"index.html";
         ![HCPUpdateInstaller sharedInstance].isInstallationInProgress) {
         [self _fetchUpdate:nil withOptions:nil];
     }
+}
+- (void)onIsPluginReadyEvent:(NSNotification *)notification {
+
+    // send notification to web
+    [self invokeDefaultCallbackWithMessage:[CDVPluginResult pluginResultForNotification:notification]];
 }
 
 /**
