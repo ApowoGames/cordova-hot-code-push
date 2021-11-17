@@ -286,9 +286,7 @@ public class HotCodePushPlugin extends CordovaPlugin {
             jsSetPluginOptions(args, callbackContext);
         } else if (JSAction.REQUEST_APP_UPDATE.equals(action)) {
             jsRequestAppUpdate(args, callbackContext);
-        } else if (JSAction.IS_PLUGIN_READY.equals(action)) {
-            jsIsPluginReady(callbackContext);
-        }   else if (JSAction.IS_UPDATE_AVAILABLE_FOR_INSTALLATION.equals(action)) {
+        } else if (JSAction.IS_UPDATE_AVAILABLE_FOR_INSTALLATION.equals(action)) {
             jsIsUpdateAvailableForInstallation(callbackContext);
         } else if (JSAction.GET_VERSION_INFO.equals(action)) {
             jsGetVersionInfo(callbackContext);
