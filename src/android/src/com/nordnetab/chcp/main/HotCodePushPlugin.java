@@ -24,7 +24,6 @@ import com.nordnetab.chcp.main.events.UpdateIsReadyToInstallEvent;
 import com.nordnetab.chcp.main.events.ManifestDiffCompleteEvent;
 import com.nordnetab.chcp.main.events.UpdateDownloadProgressEvent;
 import com.nordnetab.chcp.main.events.UpdateInstallProgressEvent;
-import com.nordnetab.chcp.main.events.IsPluginReady;
 import com.nordnetab.chcp.main.js.JSAction;
 import com.nordnetab.chcp.main.js.PluginResultHelper;
 import com.nordnetab.chcp.main.model.ChcpError;
