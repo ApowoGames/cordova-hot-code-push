@@ -159,6 +159,7 @@
     <source-file src="src/android/src/com/nordnetab/chcp/main/events/ManifestDiffCompleteEvent.java" target-dir="src/com/nordnetab/chcp/main/events"/>
     <source-file src="src/android/src/com/nordnetab/chcp/main/events/UpdateDownloadProgressEvent.java" target-dir="src/com/nordnetab/chcp/main/events"/>
     <source-file src="src/android/src/com/nordnetab/chcp/main/events/UpdateInstallProgressEvent.java" target-dir="src/com/nordnetab/chcp/main/events"/>
+    <source-file src="src/android/src/com/nordnetab/chcp/main/events/IsPluginReadyEvent.java" target-dir="src/com/nordnetab/chcp/main/events"/>
     <!-- sources for package: com.nordnetab.chcp.network -->
     <source-file src="src/android/src/com/nordnetab/chcp/main/network/ApplicationConfigDownloader.java" target-dir="src/com/nordnetab/chcp/main/network"/>
     <source-file src="src/android/src/com/nordnetab/chcp/main/network/ContentManifestDownloader.java" target-dir="src/com/nordnetab/chcp/main/network"/>
