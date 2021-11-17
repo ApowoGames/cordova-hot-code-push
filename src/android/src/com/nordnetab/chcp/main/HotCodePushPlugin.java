@@ -12,6 +12,7 @@ import com.nordnetab.chcp.main.config.FetchUpdateOptions;
 import com.nordnetab.chcp.main.config.PluginInternalPreferences;
 import com.nordnetab.chcp.main.events.AssetsInstallationErrorEvent;
 import com.nordnetab.chcp.main.events.AssetsInstalledEvent;
+import com.nordnetab.chcp.main.events.IsPluginReadyEvent;
 import com.nordnetab.chcp.main.events.BeforeAssetsInstalledEvent;
 import com.nordnetab.chcp.main.events.BeforeInstallEvent;
 import com.nordnetab.chcp.main.events.NothingToInstallEvent;
