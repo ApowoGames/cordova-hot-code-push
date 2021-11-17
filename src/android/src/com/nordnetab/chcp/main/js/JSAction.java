@@ -15,7 +15,6 @@ public final class JSAction {
     public static final String IS_UPDATE_AVAILABLE_FOR_INSTALLATION = "jsIsUpdateAvailableForInstallation";
     public static final String GET_VERSION_INFO = "jsGetVersionInfo";
     public static final String GET_FILE_DOWNLOAD_INFO = "jsGetFileDownloadInfo";
-    public static final String IS_PLUGIN_READY = "jsIsPluginReady";
 
     // Private API
     public static final String INIT = "jsInitPlugin";
