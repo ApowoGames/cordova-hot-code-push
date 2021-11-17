@@ -35,6 +35,10 @@ NSString *const kHCPEventUserInfoApplicationConfigKey = @"appConfig";
     return [HCPEvents notificationWithName:name applicationConfig:appConfig taskId:taskId error:nil];
 }
 
++ (NSNotification *)notificationWithName:(NSString *)name isPluginReady:(BOOL)pluginReady {
+    return [HCPEvents notificationWithName:name isPluginReady:pluginReady error:nil];
+}
+
 + (NSNotification *)notificationWithName:(NSString *)name applicationConfig:(HCPApplicationConfig *)appConfig taskId:(NSString *)taskId data:(NSMutableDictionary *)data {
     return [HCPEvents notificationWithName:name applicationConfig:appConfig taskId:taskId error:nil data:data];
 }
