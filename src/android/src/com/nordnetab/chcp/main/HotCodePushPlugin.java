@@ -464,13 +464,6 @@ public class HotCodePushPlugin extends CordovaPlugin {
         new AppUpdateRequestDialog(cordova.getActivity(), msg, storeURL, callback).show();
     }
 
-    private void jsIsPluginReady(final CallbackContext callback) {
-        Map<String, Object> data = null;
-        data.put("isPluginReady", isPluginReadyForWork);
-       
-        PluginResult pluginResult = PluginResultHelper.createPluginResult(null, data, error);
-        callback.sendPluginResult(pluginResult);
-    }
     /**
      * Check if new version was loaded and can be installed.
      *
