@@ -401,10 +401,7 @@ static NSString *const DEFAULT_STARTING_PAGE = @"index.html";
                            selector:@selector(onAssetsInstalledOnExternalStorageEvent:)
                                name:kHCPBundleAssetsInstalledOnExternalStorageEvent
                              object:nil];
-    [notificationCenter addObserver:self
-                           selector:@selector(onIsPluginReadyEvent:)
-                               name:kHCPBundleIsPluginReadyEvent
-                             object:nil];
+
     [notificationCenter addObserver:self
                            selector:@selector(onAssetsInstallationErrorEvent:)
                                name:kHCPBundleAssetsInstallationErrorEvent
@@ -492,7 +489,11 @@ static NSString *const DEFAULT_STARTING_PAGE = @"index.html";
     _isPluginReadyForWork = YES;
 
     // send notification to web
-    [self invokeDefaultCallbackWithMessage:[CDVPluginResult pluginResultForNotification:notification]];
+    // [self invokeDefaultCallbackWithMessage:[CDVPluginResult pluginResultForNotification:notification]];
+    // by 7.
+    
+    
+    [self onIsPluginReadyEvent];
 
      
     [[NSNotificationCenter defaultCenter] postNotification:notification];
@@ -514,8 +515,11 @@ static NSString *const DEFAULT_STARTING_PAGE = @"index.html";
         [self _fetchUpdate:nil withOptions:nil];
     }
 }
-- (void)onIsPluginReadyEvent:(NSNotification *)notification {
 
+- (void)onIsPluginReadyEvent {
+    NSLog(@" ++ Fire onIsPluginReadyEvent event.");
+    NSNotification *notification = [NSNotification notificationWithName:kHCPBundleIsPluginReadyEvent
+                                                         object:nil];
     // send notification to web
     [self invokeDefaultCallbackWithMessage:[CDVPluginResult pluginResultForNotification:notification]];
 }
