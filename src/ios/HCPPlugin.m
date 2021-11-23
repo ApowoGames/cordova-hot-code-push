@@ -494,9 +494,16 @@ static NSString *const DEFAULT_STARTING_PAGE = @"index.html";
     // send notification to web
     [self invokeDefaultCallbackWithMessage:[CDVPluginResult pluginResultForNotification:notification]];
 
-     NSNotification *notification = [HCPEvents notificationWithName:kHCPBundleIsPluginReadyEvent
-                                                 isPluginReady:true];
+     
     [[NSNotificationCenter defaultCenter] postNotification:notification];
+
+
+    // NSNotification *pluginReadyNotification = [HCPEvents notificationWithName:kHCPBundleIsPluginReadyEvent
+    //                                                         applicationConfig:nil
+    //                                                         taskId:nil];
+
+    // [[NSNotificationCenter defaultCenter] postNotification:pluginReadyNotification];
+        
 
     // fetch update
     [self loadApplicationConfig];
