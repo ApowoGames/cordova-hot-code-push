@@ -52,7 +52,6 @@ extern NSString *const kHCPBeforeBundleAssetsInstalledOnExternalStorageEvent;
  *  Event is dispatched when we successfully installed web content from bundle onto the external storage.
  */
 extern NSString *const kHCPBundleAssetsInstalledOnExternalStorageEvent;
-extern NSString *const kHCPBundleIsPluginReadyEvent;
 
 /**
  *  Event is dispatched when error occured during the installation of the web content from the bundle.

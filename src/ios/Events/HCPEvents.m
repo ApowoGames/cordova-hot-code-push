@@ -17,7 +17,6 @@ NSString *const kHCPUpdateIsInstalledEvent = @"chcp_updateInstalled";
 NSString *const kHCPNothingToInstallEvent = @"chcp_nothingToInstall";
 NSString *const kHCPBeforeBundleAssetsInstalledOnExternalStorageEvent = @"chcp_beforeAssetsInstalledOnExternalStorage";
 NSString *const kHCPBundleAssetsInstalledOnExternalStorageEvent = @"chcp_assetsInstalledOnExternalStorage";
-NSString *const kHCPBundleIsPluginReadyEvent = @"chcp_isPluginReady";
 NSString *const kHCPBundleAssetsInstallationErrorEvent = @"chcp_assetsInstallationError";
 NSString *const kHCPManifestDiffCompleteEvent = @"chcp_manifestDiffComplete";
 NSString *const kHCPUpdateDownloadProgressEvent = @"chcp_updateDownloadProgressEvent";

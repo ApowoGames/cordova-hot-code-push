@@ -401,7 +401,6 @@ static NSString *const DEFAULT_STARTING_PAGE = @"index.html";
                            selector:@selector(onAssetsInstalledOnExternalStorageEvent:)
                                name:kHCPBundleAssetsInstalledOnExternalStorageEvent
                              object:nil];
-
     [notificationCenter addObserver:self
                            selector:@selector(onAssetsInstallationErrorEvent:)
                                name:kHCPBundleAssetsInstallationErrorEvent
@@ -489,22 +488,7 @@ static NSString *const DEFAULT_STARTING_PAGE = @"index.html";
     _isPluginReadyForWork = YES;
 
     // send notification to web
-    // [self invokeDefaultCallbackWithMessage:[CDVPluginResult pluginResultForNotification:notification]];
-    // by 7.
-    
-    
-    [self onIsPluginReadyEvent];
-
-     
-    [[NSNotificationCenter defaultCenter] postNotification:notification];
-
-
-    // NSNotification *pluginReadyNotification = [HCPEvents notificationWithName:kHCPBundleIsPluginReadyEvent
-    //                                                         applicationConfig:nil
-    //                                                         taskId:nil];
-
-    // [[NSNotificationCenter defaultCenter] postNotification:pluginReadyNotification];
-        
+    [self invokeDefaultCallbackWithMessage:[CDVPluginResult pluginResultForNotification:notification]];
 
     // fetch update
     [self loadApplicationConfig];
@@ -514,14 +498,6 @@ static NSString *const DEFAULT_STARTING_PAGE = @"index.html";
         ![HCPUpdateInstaller sharedInstance].isInstallationInProgress) {
         [self _fetchUpdate:nil withOptions:nil];
     }
-}
-
-- (void)onIsPluginReadyEvent {
-    NSLog(@" ++ Fire onIsPluginReadyEvent event.");
-    NSNotification *notification = [NSNotification notificationWithName:kHCPBundleIsPluginReadyEvent
-                                                         object:nil];
-    // send notification to web
-    [self invokeDefaultCallbackWithMessage:[CDVPluginResult pluginResultForNotification:notification]];
 }
 
 /**
