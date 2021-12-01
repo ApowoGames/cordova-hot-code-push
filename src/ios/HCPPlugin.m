@@ -488,7 +488,9 @@ static NSString *const DEFAULT_STARTING_PAGE = @"index.html";
     _isPluginReadyForWork = YES;
 
     // send notification to web
-    [self invokeDefaultCallbackWithMessage:[CDVPluginResult pluginResultForNotification:notification]];
+    // [self invokeDefaultCallbackWithMessage:[CDVPluginResult pluginResultForNotification:notification]];
+
+    [self onIsPluginReadyEvent];
 
     // fetch update
     [self loadApplicationConfig];
@@ -498,6 +500,14 @@ static NSString *const DEFAULT_STARTING_PAGE = @"index.html";
         ![HCPUpdateInstaller sharedInstance].isInstallationInProgress) {
         [self _fetchUpdate:nil withOptions:nil];
     }
+}
+
+- (void)onIsPluginReadyEvent {
+    NSLog(@" ++ Fire onIsPluginReadyEvent event.");
+    NSNotification *notification = [NSNotification notificationWithName:kHCPBundleIsPluginReadyEvent
+                                                         object:nil];
+    // send notification to web
+    [self invokeDefaultCallbackWithMessage:[CDVPluginResult pluginResultForNotification:notification]];
 }
 
 /**
